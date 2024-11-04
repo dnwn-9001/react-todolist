@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Input, List } from "../../components";
+import styles from "./MainContainer.module.css";
 
 const MainContainer = () => {
   const [titleData, setTitleData] = useState("");
@@ -32,7 +33,7 @@ const MainContainer = () => {
     );
   };
   return (
-    <div>
+    <div className={styles.container}>
       <Input
         titleVal={titleData}
         contentVal={contentData}
