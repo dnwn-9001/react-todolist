@@ -1,4 +1,4 @@
-import React from "react";
+import styles from "./Input.module.css";
 
 const Input = ({
   onClick,
@@ -8,26 +8,30 @@ const Input = ({
   contentVal,
 }) => {
   return (
-    <form onSubmit={onClick}>
+    <form className={styles.form__area} onSubmit={onClick}>
       <div>
-        <sapn>제목</sapn>
+        <h3 className={styles.input__title}>Title</h3>
         <input
           type="text"
+          className={styles.input__box}
           placeholder="제목을 입력해주세요."
           onChange={onChangeTitle}
           value={titleVal}
         />
       </div>
       <div>
-        <sapn>내용</sapn>
+        <h3 className={styles.input__title}>Content</h3>
         <input
           type="text"
+          className={styles.input__box}
           placeholder="내용을 입력해주세요."
           onChange={onChangeContent}
           value={contentVal}
         />
       </div>
-      <button type="submit">추가하기</button>
+      <button className={styles.add__btn} type="submit">
+        Add
+      </button>
     </form>
   );
 };
