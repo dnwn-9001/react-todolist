@@ -1,0 +1,48 @@
+.working {
+  width: 440px;
+  height: 700px;
+  padding: 10px 15px;
+  margin-left: 20px;
+  background-color: #d8bfd8;
+  border-radius: 20px;
+}
+
+.working__ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.working__ul__li {
+  width: 93%;
+  background-color: #fff;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.working__ul__li button {
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.working__ul__li__content h4 {
+  margin: 10px 0;
+}
+
+.btn__complete {
+  background-color: #e0e0e0;
+  color: #483d8b;
+}
+
+.btn__incomplete {
+  background-color: #6a5acd;
+  color: #fff8dc;
+}
