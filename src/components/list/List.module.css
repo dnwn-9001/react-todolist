@@ -5,6 +5,7 @@
   margin-left: 20px;
   background-color: #d8bfd8;
   border-radius: 20px;
+  overflow: auto;
 }
 
 .working__ul {
