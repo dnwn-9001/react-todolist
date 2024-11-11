@@ -5,7 +5,27 @@
   margin-left: 20px;
   background-color: #d8bfd8;
   border-radius: 20px;
+}
+
+.working__div {
+  height: 600px;
   overflow: auto;
+}
+
+/* 스크롤바 전체 영역 */
+.working__div::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* 움직이는 스크롤바 막대 꾸미기 */
+.working__div::-webkit-scrollbar-thumb {
+  background: #6a5acd;
+  border-radius: 10px;
+}
+
+/* 움직이는 스크롤바 뒷 배경 */
+.working__div::-webkit-scrollbar-track {
+  background: rgba(220, 20, 60, 0.1);
 }
 
 .working__ul {

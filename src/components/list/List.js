@@ -4,7 +4,7 @@ const List = ({ listData, onClickStatusBtn }) => {
   return (
     <div className={styles.working}>
       <h3>Working</h3>
-      <div>
+      <div className={styles.working__div}>
         <ul className={styles.working__ul}>
           {listData.map((v, i) =>
             !v.isDone ? (
