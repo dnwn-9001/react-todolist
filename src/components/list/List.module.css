@@ -67,3 +67,9 @@
   background-color: #6a5acd;
   color: #fff8dc;
 }
+
+.btn__delete {
+  background-color: red;
+  color: #fff8dc;
+  margin-right: 3px;
+}

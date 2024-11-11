@@ -17,6 +17,11 @@ const MainContainer = () => {
 
   const onAddClickHandler = (e) => {
     e.preventDefault();
+    if (!titleData || !contentData) {
+      alert("제목과 내용을 입력해주세요.");
+      return;
+    }
+
     setToDoList((prev) => [
       ...prev,
       { title: titleData, content: contentData, isDone: false },
@@ -32,6 +37,11 @@ const MainContainer = () => {
       )
     );
   };
+
+  const onDeleteClickHandler = (index) => {
+    setToDoList((prev) => prev.filter((_, i) => i !== index));
+  };
+
   return (
     <div className={styles.container}>
       <Input
@@ -41,7 +51,11 @@ const MainContainer = () => {
         onChangeContent={onChangeContentHandler}
         onClick={onAddClickHandler}
       />
-      <List listData={toDoList} onClickStatusBtn={onStatusClickHandler} />
+      <List
+        listData={toDoList}
+        onClickStatusBtn={onStatusClickHandler}
+        onClickDeleteBtn={onDeleteClickHandler}
+      />
     </div>
   );
 };

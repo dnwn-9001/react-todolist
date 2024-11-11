@@ -1,6 +1,6 @@
 import styles from "./List.module.css";
 
-const List = ({ listData, onClickStatusBtn }) => {
+const List = ({ listData, onClickStatusBtn, onClickDeleteBtn }) => {
   return (
     <div className={styles.working}>
       <h3>Working</h3>
@@ -13,12 +13,20 @@ const List = ({ listData, onClickStatusBtn }) => {
                   <h4>{v.title}</h4>
                   <p>{v.content}</p>
                 </div>
-                <button
-                  className={styles.btn__incomplete}
-                  onClick={() => onClickStatusBtn(i)}
-                >
-                  완료
-                </button>
+                <div>
+                  <button
+                    className={styles.btn__delete}
+                    onClick={() => onClickDeleteBtn(i)}
+                  >
+                    삭제
+                  </button>
+                  <button
+                    className={styles.btn__incomplete}
+                    onClick={() => onClickStatusBtn(i)}
+                  >
+                    완료
+                  </button>
+                </div>
               </li>
             ) : (
               ""
@@ -33,12 +41,20 @@ const List = ({ listData, onClickStatusBtn }) => {
                   <h4>{v.title}</h4>
                   <p>{v.content}</p>
                 </div>
-                <button
-                  className={styles.btn__complete}
-                  onClick={() => onClickStatusBtn(i)}
-                >
-                  취소
-                </button>
+                <div>
+                  <button
+                    className={styles.btn__delete}
+                    onClick={() => onClickDeleteBtn(i)}
+                  >
+                    삭제
+                  </button>
+                  <button
+                    className={styles.btn__complete}
+                    onClick={() => onClickStatusBtn(i)}
+                  >
+                    취소
+                  </button>
+                </div>
               </li>
             ) : (
               ""
