@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input, List } from "../../components";
 import styles from "./MainContainer.module.css";
 
@@ -6,6 +6,7 @@ const MainContainer = () => {
   const [titleData, setTitleData] = useState("");
   const [contentData, setContentData] = useState("");
   const [toDoList, setToDoList] = useState([]);
+  const [filteredList, setFilteredList] = useState(toDoList);
 
   const onChangeTitleHandler = (e) => {
     setTitleData(e.target.value);
@@ -22,10 +23,10 @@ const MainContainer = () => {
       return;
     }
 
-    setToDoList((prev) => [
-      ...prev,
-      { title: titleData, content: contentData, isDone: false },
-    ]);
+    const newTask = { title: titleData, content: contentData, isDone: false };
+    setToDoList((prev) => [...prev, newTask]);
+    setFilteredList((prev) => [...prev, newTask]);
+
     setTitleData("");
     setContentData("");
   };
@@ -42,6 +43,15 @@ const MainContainer = () => {
     setToDoList((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const sortByStatus = (val) => {
+    if (val === "") setFilteredList(toDoList);
+    else setFilteredList(toDoList.filter((item) => item.isDone === val));
+  };
+
+  useEffect(() => {
+    setFilteredList(toDoList);
+  }, [toDoList]);
+
   return (
     <div className={styles.container}>
       <Input
@@ -52,9 +62,10 @@ const MainContainer = () => {
         onClick={onAddClickHandler}
       />
       <List
-        listData={toDoList}
+        listData={filteredList}
         onClickStatusBtn={onStatusClickHandler}
         onClickDeleteBtn={onDeleteClickHandler}
+        onChangeSelect={sortByStatus}
       />
     </div>
   );

@@ -7,6 +7,12 @@
   border-radius: 20px;
 }
 
+.working__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .working__div {
   height: 600px;
   overflow: auto;

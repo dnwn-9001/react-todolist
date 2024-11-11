@@ -1,9 +1,28 @@
 import styles from "./List.module.css";
+import { Select } from "antd";
 
-const List = ({ listData, onClickStatusBtn, onClickDeleteBtn }) => {
+const List = ({
+  listData,
+  onClickStatusBtn,
+  onClickDeleteBtn,
+  onChangeSelect,
+}) => {
   return (
     <div className={styles.working}>
-      <h3>Working</h3>
+      <div className={styles.working__header}>
+        <h3>Working</h3>
+        <Select
+          defaultValue=""
+          style={{ width: 120 }}
+          onChange={onChangeSelect}
+          options={[
+            { value: "", label: "전체" },
+            { value: true, label: "완료" },
+            { value: false, label: "미완료" },
+          ]}
+        />
+      </div>
+
       <div className={styles.working__div}>
         <ul className={styles.working__ul}>
           {listData.map((v, i) =>
