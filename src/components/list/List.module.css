@@ -11,11 +11,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 10px;
 }
 
 .working__div {
   height: 600px;
   overflow: auto;
+  padding: 0 10px;
 }
 
 /* 스크롤바 전체 영역 */
