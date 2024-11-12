@@ -18,7 +18,7 @@ const MainContainer = () => {
 
   const onAddClickHandler = (e) => {
     e.preventDefault();
-    if (!titleData || !contentData) {
+    if (!titleData.trim() || !contentData.trim()) {
       alert("제목과 내용을 입력해주세요.");
       return;
     }
