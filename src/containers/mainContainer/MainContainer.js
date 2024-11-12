@@ -29,6 +29,8 @@ const MainContainer = () => {
 
     setTitleData("");
     setContentData("");
+
+    e.target[0].focus();
   };
 
   const onStatusClickHandler = (index) => {
@@ -44,6 +46,7 @@ const MainContainer = () => {
   };
 
   const sortByStatus = (val) => {
+    console.log(`selected ${val}`);
     if (val === "") setFilteredList(toDoList);
     else setFilteredList(toDoList.filter((item) => item.isDone === val));
   };
