@@ -7,6 +7,7 @@ const MainContainer = () => {
   const [contentData, setContentData] = useState("");
   const [toDoList, setToDoList] = useState([]);
   const [filteredList, setFilteredList] = useState(toDoList);
+  const [filterVal, setFilterVal] = useState("");
 
   const onChangeTitleHandler = (e) => {
     setTitleData(e.target.value);
@@ -25,7 +26,6 @@ const MainContainer = () => {
 
     const newTask = { title: titleData, content: contentData, isDone: false };
     setToDoList((prev) => [...prev, newTask]);
-    setFilteredList((prev) => [...prev, newTask]);
 
     setTitleData("");
     setContentData("");
@@ -46,13 +46,13 @@ const MainContainer = () => {
   };
 
   const sortByStatus = (val) => {
-    console.log(`selected ${val}`);
+    setFilterVal(val);
     if (val === "") setFilteredList(toDoList);
     else setFilteredList(toDoList.filter((item) => item.isDone === val));
   };
 
   useEffect(() => {
-    setFilteredList(toDoList);
+    sortByStatus(filterVal);
   }, [toDoList]);
 
   return (
