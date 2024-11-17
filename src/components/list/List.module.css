@@ -89,3 +89,10 @@ button {
   font-weight: 600;
   padding: 10px 10px 0 0;
 }
+
+.phrase {
+  margin: auto;
+  text-align: center;
+  padding-top: 80px;
+  font-weight: 600;
+}

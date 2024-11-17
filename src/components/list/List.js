@@ -5,12 +5,14 @@ import { Select } from "antd";
 const List = ({
   filteredListData,
   toDoListData,
+  filterOption,
   onClickStatusBtn,
   onClickDeleteBtn,
   onChangeSelect,
   onClickDeleteAllBtn,
 }) => {
   const [incompleteCnt, setIncompleteCnt] = useState(0);
+
   const todoRemaining = () => {
     setIncompleteCnt(toDoListData?.filter((item) => !item.isDone)?.length);
   };
@@ -41,60 +43,75 @@ const List = ({
       </div>
 
       <div className={styles.working__div}>
-        <ul className={styles.working__ul}>
-          {filteredListData.map(
-            (v, i) =>
-              !v.isDone && (
-                <li className={styles.working__ul__li} key={`isNotDone_${i}`}>
-                  <div className={styles.working__ul__li__content}>
-                    <h4>{v.title}</h4>
-                    <p>{v.content}</p>
-                  </div>
-                  <div>
-                    <button
-                      className={styles.btn__delete}
-                      onClick={() => onClickDeleteBtn(v.id)}
+        {filteredListData?.length ? (
+          <>
+            <ul className={styles.working__ul}>
+              {filteredListData.map(
+                (v, i) =>
+                  !v.isDone && (
+                    <li
+                      className={styles.working__ul__li}
+                      key={`isNotDone_${i}`}
                     >
-                      삭제
-                    </button>
-                    <button
-                      className={styles.btn__incomplete}
-                      onClick={() => onClickStatusBtn(v.id)}
-                    >
-                      완료
-                    </button>
-                  </div>
-                </li>
-              )
-          )}
-        </ul>
-        <ul className={styles.working__ul}>
-          {filteredListData.map(
-            (v, i) =>
-              v.isDone && (
-                <li className={styles.working__ul__li} key={`isDone_${i}`}>
-                  <div className={styles.working__ul__li__content}>
-                    <h4>{v.title}</h4>
-                    <p>{v.content}</p>
-                  </div>
-                  <div>
-                    <button
-                      className={styles.btn__delete}
-                      onClick={() => onClickDeleteBtn(v.id)}
-                    >
-                      삭제
-                    </button>
-                    <button
-                      className={styles.btn__complete}
-                      onClick={() => onClickStatusBtn(v.id)}
-                    >
-                      취소
-                    </button>
-                  </div>
-                </li>
-              )
-          )}
-        </ul>
+                      <div className={styles.working__ul__li__content}>
+                        <h4>{v.title}</h4>
+                        <p>{v.content}</p>
+                      </div>
+                      <div>
+                        <button
+                          className={styles.btn__delete}
+                          onClick={() => onClickDeleteBtn(v.id)}
+                        >
+                          삭제
+                        </button>
+                        <button
+                          className={styles.btn__incomplete}
+                          onClick={() => onClickStatusBtn(v.id)}
+                        >
+                          완료
+                        </button>
+                      </div>
+                    </li>
+                  )
+              )}
+            </ul>
+            <ul className={styles.working__ul}>
+              {filteredListData.map(
+                (v, i) =>
+                  v.isDone && (
+                    <li className={styles.working__ul__li} key={`isDone_${i}`}>
+                      <div className={styles.working__ul__li__content}>
+                        <h4>{v.title}</h4>
+                        <p>{v.content}</p>
+                      </div>
+                      <div>
+                        <button
+                          className={styles.btn__delete}
+                          onClick={() => onClickDeleteBtn(v.id)}
+                        >
+                          삭제
+                        </button>
+                        <button
+                          className={styles.btn__complete}
+                          onClick={() => onClickStatusBtn(v.id)}
+                        >
+                          취소
+                        </button>
+                      </div>
+                    </li>
+                  )
+              )}
+            </ul>
+          </>
+        ) : (
+          <p className={styles.phrase}>
+            {filterOption === ""
+              ? "No tasks added. Start by creating one!"
+              : filterOption
+              ? "You have a lot to do! Keep going!"
+              : "All tasks completed. Congratulations!"}
+          </p>
+        )}
       </div>
 
       <p className={styles.remaining__cnt}>{incompleteCnt}개 남음</p>

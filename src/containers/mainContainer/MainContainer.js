@@ -87,6 +87,7 @@ const MainContainer = () => {
       <List
         filteredListData={filteredList}
         toDoListData={toDoList}
+        filterOption={filterVal}
         onClickStatusBtn={onStatusClickHandler}
         onClickDeleteBtn={onDeleteClickHandler}
         onChangeSelect={sortByStatus}
