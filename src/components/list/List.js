@@ -97,9 +97,7 @@ const List = ({
         </ul>
       </div>
 
-      <div>
-        <p>{incompleteCnt}개 남음</p>
-      </div>
+      <p className={styles.remaining__cnt}>{incompleteCnt}개 남음</p>
     </div>
   );
 };

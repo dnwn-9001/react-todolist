@@ -81,3 +81,11 @@ button {
   color: #fff8dc;
   margin-right: 3px;
 }
+
+.remaining__cnt {
+  text-align: right;
+  margin: auto;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 10px 0 0;
+}
