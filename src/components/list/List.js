@@ -36,13 +36,13 @@ const List = ({
                   <div>
                     <button
                       className={styles.btn__delete}
-                      onClick={() => onClickDeleteBtn(i)}
+                      onClick={() => onClickDeleteBtn(v.id)}
                     >
                       삭제
                     </button>
                     <button
                       className={styles.btn__incomplete}
-                      onClick={() => onClickStatusBtn(i)}
+                      onClick={() => onClickStatusBtn(v.id)}
                     >
                       완료
                     </button>
@@ -63,13 +63,13 @@ const List = ({
                   <div>
                     <button
                       className={styles.btn__delete}
-                      onClick={() => onClickDeleteBtn(i)}
+                      onClick={() => onClickDeleteBtn(v.id)}
                     >
                       삭제
                     </button>
                     <button
                       className={styles.btn__complete}
-                      onClick={() => onClickStatusBtn(i)}
+                      onClick={() => onClickStatusBtn(v.id)}
                     >
                       취소
                     </button>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Input, List } from "../../components";
 import styles from "./MainContainer.module.css";
+import { v4 as uuidv4 } from "uuid";
 
 const MainContainer = () => {
   const [titleData, setTitleData] = useState("");
@@ -17,6 +18,7 @@ const MainContainer = () => {
     setContentData(e.target.value);
   };
 
+  // 추가
   const onAddClickHandler = (e) => {
     e.preventDefault();
     if (!titleData.trim() || !contentData.trim()) {
@@ -24,7 +26,12 @@ const MainContainer = () => {
       return;
     }
 
-    const newTask = { title: titleData, content: contentData, isDone: false };
+    const newTask = {
+      title: titleData,
+      content: contentData,
+      isDone: false,
+      id: uuidv4(),
+    };
     setToDoList((prev) => [...prev, newTask]);
 
     setTitleData("");
@@ -33,18 +40,22 @@ const MainContainer = () => {
     e.target[0].focus();
   };
 
-  const onStatusClickHandler = (index) => {
+  // 완료, 미완료 상태 변경
+  const onStatusClickHandler = (id) => {
     setToDoList((prev) =>
       prev.map((item, i) =>
-        i === index ? { ...item, isDone: !item.isDone } : item
+        item.id === id ? { ...item, isDone: !item.isDone } : item
       )
     );
   };
 
-  const onDeleteClickHandler = (index) => {
-    setToDoList((prev) => prev.filter((_, i) => i !== index));
+  // 삭제
+  const onDeleteClickHandler = (id) => {
+    const result = window.confirm("삭제하시겠습니까?");
+    if (result) setToDoList((prev) => prev.filter((item, i) => item.id !== id));
   };
 
+  // 상태별 필터
   const sortByStatus = (val) => {
     setFilterVal(val);
     if (val === "") setFilteredList(toDoList);
