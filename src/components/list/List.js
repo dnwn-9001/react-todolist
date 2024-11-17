@@ -1,13 +1,24 @@
+import { useEffect, useState } from "react";
 import styles from "./List.module.css";
 import { Select } from "antd";
 
 const List = ({
-  listData,
+  filteredListData,
+  toDoListData,
   onClickStatusBtn,
   onClickDeleteBtn,
   onChangeSelect,
   onClickDeleteAllBtn,
 }) => {
+  const [incompleteCnt, setIncompleteCnt] = useState(0);
+  const todoRemaining = () => {
+    setIncompleteCnt(toDoListData?.filter((item) => !item.isDone)?.length);
+  };
+
+  useEffect(() => {
+    todoRemaining();
+  }, [toDoListData]);
+
   return (
     <div className={styles.working}>
       <div className={styles.working__header}>
@@ -31,7 +42,7 @@ const List = ({
 
       <div className={styles.working__div}>
         <ul className={styles.working__ul}>
-          {listData.map(
+          {filteredListData.map(
             (v, i) =>
               !v.isDone && (
                 <li className={styles.working__ul__li} key={`isNotDone_${i}`}>
@@ -58,7 +69,7 @@ const List = ({
           )}
         </ul>
         <ul className={styles.working__ul}>
-          {listData.map(
+          {filteredListData.map(
             (v, i) =>
               v.isDone && (
                 <li className={styles.working__ul__li} key={`isDone_${i}`}>
@@ -84,6 +95,10 @@ const List = ({
               )
           )}
         </ul>
+      </div>
+
+      <div>
+        <p>{incompleteCnt}개 남음</p>
       </div>
     </div>
   );
