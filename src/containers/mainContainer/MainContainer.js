@@ -55,6 +55,14 @@ const MainContainer = () => {
     if (result) setToDoList((prev) => prev.filter((item, i) => item.id !== id));
   };
 
+  const onDeleteAll = () => {
+    const result = window.confirm("모두 삭제하시겠습니까?");
+    if (result) {
+      setToDoList([]);
+      setFilteredList([]);
+    }
+  };
+
   // 상태별 필터
   const sortByStatus = (val) => {
     setFilterVal(val);
@@ -80,6 +88,7 @@ const MainContainer = () => {
         onClickStatusBtn={onStatusClickHandler}
         onClickDeleteBtn={onDeleteClickHandler}
         onChangeSelect={sortByStatus}
+        onClickDeleteAllBtn={onDeleteAll}
       />
     </div>
   );

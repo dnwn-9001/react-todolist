@@ -6,21 +6,27 @@ const List = ({
   onClickStatusBtn,
   onClickDeleteBtn,
   onChangeSelect,
+  onClickDeleteAllBtn,
 }) => {
   return (
     <div className={styles.working}>
       <div className={styles.working__header}>
         <h3>Working</h3>
-        <Select
-          defaultValue=""
-          style={{ width: 120 }}
-          onChange={onChangeSelect}
-          options={[
-            { value: "", label: "전체" },
-            { value: true, label: "완료" },
-            { value: false, label: "미완료" },
-          ]}
-        />
+        <div>
+          <button className={styles.btn__delete} onClick={onClickDeleteAllBtn}>
+            전체 삭제
+          </button>
+          <Select
+            defaultValue=""
+            style={{ width: 120 }}
+            onChange={onChangeSelect}
+            options={[
+              { value: "", label: "전체" },
+              { value: true, label: "완료" },
+              { value: false, label: "미완료" },
+            ]}
+          />
+        </div>
       </div>
 
       <div className={styles.working__div}>

@@ -54,12 +54,12 @@
   font-size: 14px;
 }
 
-.working__ul__li button {
+button {
   border: none;
   border-radius: 10px;
   cursor: pointer;
   font-size: 12px;
-  padding: 10px;
+  padding: 9px 10px;
 }
 
 .working__ul__li__content h4 {
