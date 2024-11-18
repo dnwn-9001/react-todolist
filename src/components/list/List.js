@@ -10,6 +10,7 @@ const List = ({
   onClickDeleteBtn,
   onChangeSelect,
   onClickDeleteAllBtn,
+  onClickModifyBtn,
 }) => {
   const [incompleteCnt, setIncompleteCnt] = useState(0);
 
@@ -63,6 +64,13 @@ const List = ({
                           onClick={() => onClickDeleteBtn(v.id)}
                         >
                           삭제
+                        </button>
+                        <button
+                          onClick={() =>
+                            onClickModifyBtn(v.id, v.title, v.content)
+                          }
+                        >
+                          수정
                         </button>
                         <button
                           className={styles.btn__incomplete}

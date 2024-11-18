@@ -9,6 +9,7 @@ const MainContainer = () => {
   const [toDoList, setToDoList] = useState([]);
   const [filteredList, setFilteredList] = useState(toDoList);
   const [filterVal, setFilterVal] = useState("");
+  const [toDoId, setToDoId] = useState("");
 
   const onChangeTitleHandler = (e) => {
     setTitleData(e.target.value);
@@ -18,7 +19,7 @@ const MainContainer = () => {
     setContentData(e.target.value);
   };
 
-  // 추가
+  // 추가 및 수정
   const onAddClickHandler = (e) => {
     e.preventDefault();
     if (!titleData.trim() || !contentData.trim()) {
@@ -26,18 +27,37 @@ const MainContainer = () => {
       return;
     }
 
-    const newTask = {
-      title: titleData,
-      content: contentData,
-      isDone: false,
-      id: uuidv4(),
-    };
-    setToDoList((prev) => [...prev, newTask]);
+    if (!toDoId) {
+      // id가 존재하지 않으면 추가
+      const newTask = {
+        title: titleData,
+        content: contentData,
+        isDone: false,
+        id: uuidv4(),
+      };
+      setToDoList((prev) => [...prev, newTask]);
+    } else {
+      // id가 존재하면 수정
+      setToDoList((prev) =>
+        prev.map((item, i) =>
+          item.id === toDoId
+            ? { ...item, title: titleData, content: contentData }
+            : item
+        )
+      );
+    }
 
     setTitleData("");
     setContentData("");
 
     e.target[0].focus();
+  };
+
+  // 수정을 위한 셋팅
+  const onModifyHandler = (id, title, content) => {
+    setToDoId(id);
+    setTitleData(title);
+    setContentData(content);
   };
 
   // 완료, 미완료 상태 변경
@@ -92,6 +112,7 @@ const MainContainer = () => {
         onClickDeleteBtn={onDeleteClickHandler}
         onChangeSelect={sortByStatus}
         onClickDeleteAllBtn={onDeleteAll}
+        onClickModifyBtn={onModifyHandler}
       />
     </div>
   );
