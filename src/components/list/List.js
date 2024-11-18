@@ -66,6 +66,7 @@ const List = ({
                           삭제
                         </button>
                         <button
+                          className={styles.btn__modify}
                           onClick={() =>
                             onClickModifyBtn(v.id, v.title, v.content)
                           }

@@ -82,6 +82,11 @@ button {
   margin-right: 3px;
 }
 
+.btn__modify {
+  background-color: pink;
+  margin-right: 3px;
+}
+
 .remaining__cnt {
   text-align: right;
   margin: auto;
