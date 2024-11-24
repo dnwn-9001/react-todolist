@@ -45,6 +45,8 @@ const MainContainer = () => {
             : item
         )
       );
+
+      setToDoId("");
     }
 
     setTitleData("");
