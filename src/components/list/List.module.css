@@ -62,6 +62,11 @@ button {
   padding: 9px 10px;
 }
 
+.working__ul__li__content {
+  width: 60%;
+  overflow: hidden;
+}
+
 .working__ul__li__content h4 {
   margin: 10px 0;
 }
