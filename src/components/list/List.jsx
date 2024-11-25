@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./List.module.css";
 import { Select } from "antd";
+import SearchBar from "../searchBar/SearchBar";
 
 const List = ({
   filteredListData,
@@ -11,6 +12,7 @@ const List = ({
   onChangeSelect,
   onClickDeleteAllBtn,
   onClickModifyBtn,
+  onSearch,
 }) => {
   const [incompleteCnt, setIncompleteCnt] = useState(0);
 
@@ -42,6 +44,9 @@ const List = ({
           />
         </div>
       </div>
+
+      {/* 검색바 : 검색 값, 비교해서 조회하는 로직*/}
+      <SearchBar onSearch={onSearch} />
 
       <div className={styles.working__div}>
         {filteredListData?.length ? (
