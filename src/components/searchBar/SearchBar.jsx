@@ -9,6 +9,7 @@ const SearchBar = ({ onSearch }) => {
       className={styles.search__bar}
       placeholder="input search text"
       onSearch={onSearch}
+      allowClear
     />
   );
 };

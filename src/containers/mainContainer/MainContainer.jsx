@@ -10,6 +10,7 @@ const MainContainer = () => {
   const [filteredList, setFilteredList] = useState(toDoList);
   const [filterVal, setFilterVal] = useState("");
   const [toDoId, setToDoId] = useState("");
+  const [searchWord, setSearchWord] = useState("");
 
   const onChangeTitleHandler = (e) => {
     setTitleData(e.target.value);
@@ -64,11 +65,28 @@ const MainContainer = () => {
 
   // 완료, 미완료 상태 변경
   const onStatusClickHandler = (id) => {
+    // 기본적으로 toDoList의  isDone 상태를 변경
     setToDoList((prev) =>
       prev.map((item, i) =>
         item.id === id ? { ...item, isDone: !item.isDone } : item
       )
     );
+    if (filterVal) {
+      if (!searchWord) {
+        // 검색어 없을때
+        setFilteredList(toDoList.filter((item) => item.isDone === filterVal));
+      } else if (searchWord) {
+        // 검색어 있을때
+        setFilteredList(
+          toDoList.filter(
+            (item) =>
+              item.isDone === filterVal &&
+              (item.title.includes(searchWord) ||
+                item.content.includes(searchWord))
+          )
+        );
+      }
+    }
   };
 
   // 삭제
@@ -89,8 +107,59 @@ const MainContainer = () => {
   // 상태별 필터
   const sortByStatus = (val) => {
     setFilterVal(val);
-    if (val === "") setFilteredList(toDoList);
-    else setFilteredList(toDoList.filter((item) => item.isDone === val));
+
+    if (val === "") {
+      // 전체검색이면서 검색어가 없을때
+      if (!searchWord) setFilteredList(toDoList);
+      // 검색어가 있을때
+      else {
+        setFilteredList(
+          toDoList.filter(
+            (item) =>
+              item.title.includes(searchWord) ||
+              item.content.includes(searchWord)
+          )
+        );
+      }
+    } else {
+      // 필터링 상태이면서 검색어 없을때
+      if (!searchWord)
+        setFilteredList(toDoList.filter((item) => item.isDone === val));
+      else {
+        // 검색어 있을때
+        setFilteredList(
+          toDoList.filter(
+            (item) =>
+              item.isDone === val &&
+              (item.title.includes(searchWord) ||
+                item.content.includes(searchWord))
+          )
+        );
+      }
+    }
+  };
+
+  // 검색 필터
+  const onSearch = (value = "") => {
+    setSearchWord(value);
+
+    if (!value) {
+      sortByStatus(filterVal);
+    } else {
+      if (filterVal) {
+        setFilteredList((prev) =>
+          prev.filter(
+            (item) => item.title.includes(value) || item.content.includes(value)
+          )
+        );
+      } else {
+        setFilteredList(
+          toDoList.filter(
+            (item) => item.title.includes(value) || item.content.includes(value)
+          )
+        );
+      }
+    }
   };
 
   useEffect(() => {
@@ -115,6 +184,7 @@ const MainContainer = () => {
         onChangeSelect={sortByStatus}
         onClickDeleteAllBtn={onDeleteAll}
         onClickModifyBtn={onModifyHandler}
+        onSearch={onSearch}
       />
     </div>
   );
